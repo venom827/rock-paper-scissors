@@ -46,16 +46,27 @@ function playRound(){
     )
     {
         console.log(`You win, ${humanChoice} beats ${computerChoice}!`)
+        humanScore++
     }
     else {
         console.log(`You lose, ${computerChoice} beats ${humanChoice}!`)
+        computerScore++
     }
 };
 
 function playGame(){
     for (let i = 0; i<5; i++) {
-        playRound()
-    }
+        playRound();
+        console .log(`You won ${humanScore} matches while computer won ${computerScore} matches!`)    }
 };
 
 playGame();
+if (humanScore>computerScore){
+    console.log("You won the match!")
+}
+else if( humanScore<computerScore){
+    console.log("Unfortunately. you lost")
+}
+else{
+    console.log("Unexpectedly, it'a a tie")
+}
