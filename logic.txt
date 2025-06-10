@@ -1,0 +1,14 @@
+This is basic pseudocode for the program
+
+Initially, both the player and computer score is 0.
+We now need to get computer choice to play one round of game
+Computer will randomly choose rock, paper or scissors
+User will be asked for his choice which will be case insensitive
+The victor of the round will have an increment of 1 in their score
+Game wil have 5 rounds
+Victor of game will be the one with higher score
+
+Basic coding logic
+1. computerchoice function needs to output rock paper or scissors, randomly.
+We need to use math.random to achieve this task. 
+We can do this by creating a function that outputs 3 values, assigning each of those values to rock paper scissors
