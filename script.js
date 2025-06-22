@@ -4,9 +4,9 @@ const rock = "Rock";
 const paper = "Paper";
 const scissors = "Scissors";
 
-//DOM or UI part
 
-const container = document.querySelector('div')
+
+const container = document.querySelector('#container')
 
 const Rock = document.createElement('button');
 Rock.textContent = "Rock";
@@ -30,6 +30,10 @@ Scissors.addEventListener("click", () => {
 })
 container.appendChild(Scissors)
 
+const textContainer = document.createElement('div')
+textContainer.classList.add('textContainer')
+container.appendChild(textContainer)
+
 //functions part(functionality)
 
 function getComputerChoice(){//1.Function to get choice of computer
@@ -49,38 +53,45 @@ function getComputerChoice(){//1.Function to get choice of computer
 };
 
 
-function playRound(){//2.Game rules
+let roundsPlayed = 0;
+const totalRounds = 5;
+
+function playRound() {
+    if (roundsPlayed >= totalRounds) return; // Prevent extra rounds
+
     let computerChoice = getComputerChoice();
-    if (humanChoice == computerChoice){
-        console.log("It's a tie!")
+    if (humanChoice == computerChoice) {
+        textContainer.textContent = "It's a tie!";
     }
-    else if(
+    else if (
         humanChoice == "Rock" && computerChoice == "Scissors" ||
         humanChoice == "Scissors" && computerChoice == "Paper" ||
-        humanChoice == "Paper" && computerChoice == "Rock" 
-    )
-    {
-        console.log(`You win, ${humanChoice} beats ${computerChoice}!`)
-        humanScore++
+        humanChoice == "Paper" && computerChoice == "Rock"
+    ) {
+        textContainer.textContent = `You win, ${humanChoice} beats ${computerChoice}!`;
+        humanScore++;
     }
     else {
-        console.log(`You lose, ${computerChoice} beats ${humanChoice}!`)
-        computerScore++
+        textContainer.textContent = `You lose, ${computerChoice} beats ${humanChoice}!`;
+        computerScore++;
     }
-};
 
-function playGame(){//3.Playing games
-        playRound();
-        console .log(`You won ${humanScore} matches while computer won ${computerScore} matches!`)
-};
+    roundsPlayed++;
+    textContainer.textContent += `\nScore: You ${humanScore} - Computer ${computerScore} (Round ${roundsPlayed}/${totalRounds})`;
 
-playGame();
-if (humanScore>computerScore){
-    console.log("You won the match!")
-}
-else if( humanScore<computerScore){
-    console.log("Unfortunately. you lost")
-}
-else{
-    console.log("Unexpectedly, it'a a tie")
+    if (roundsPlayed === totalRounds) {
+        // Disable buttons
+        Rock.disabled = true;
+        Paper.disabled = true;
+        Scissors.disabled = true;
+
+        // Show final result
+        if (humanScore > computerScore) {
+            textContainer.textContent += `\nYou won the match!`;
+        } else if (humanScore < computerScore) {
+            textContainer.textContent += `\nUnfortunately, you lost.`;
+        } else {
+            textContainer.textContent += `\nUnexpectedly, it's a tie.`;
+        }
+    }
 }
