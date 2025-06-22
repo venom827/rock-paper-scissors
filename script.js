@@ -11,18 +11,21 @@ const container = document.querySelector('div')
 const Rock = document.createElement('button');
 Rock.textContent = "Rock";
 Rock.addEventListener("click", () => {
+    humanChoice = rock
     playRound();
 })
 container.appendChild(Rock)
 const Paper = document.createElement('button');
 Paper.textContent = "Paper";
 Paper.addEventListener("click", () => {
+    humanChoice = paper;
     playRound();
 })
 container.appendChild(Paper)
 const Scissors = document.createElement('button');
 Scissors.textContent = "Scissors";
 Scissors.addEventListener("click", () => {
+    humanChoice = scissors;
     playRound();
 })
 container.appendChild(Scissors)
@@ -45,20 +48,8 @@ function getComputerChoice(){//1.Function to get choice of computer
     } 
 };
 
-function getHumanChoice(){
-    let userInput = prompt("What do you choose?");
-    if (userInput.toUpperCase() == "ROCK"){
-        return rock
-    }
-    else if (userInput.toUpperCase() == "PAPER"){
-        return paper
-    }
-    else if (userInput.toUpperCase() == "SCISSORS"){
-        return scissors
-    }
-};
+
 function playRound(){//2.Game rules
-    let humanChoice = getHumanChoice();
     let computerChoice = getComputerChoice();
     if (humanChoice == computerChoice){
         console.log("It's a tie!")
