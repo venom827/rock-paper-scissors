@@ -4,7 +4,32 @@ const rock = "Rock";
 const paper = "Paper";
 const scissors = "Scissors";
 
-function getComputerChoice(){
+//DOM or UI part
+
+const container = document.querySelector('div')
+
+const Rock = document.createElement('button');
+Rock.textContent = "Rock";
+Rock.addEventListener("click", () => {
+    playRound();
+})
+container.appendChild(Rock)
+const Paper = document.createElement('button');
+Paper.textContent = "Paper";
+Paper.addEventListener("click", () => {
+    playRound();
+})
+container.appendChild(Paper)
+const Scissors = document.createElement('button');
+Scissors.textContent = "Scissors";
+Scissors.addEventListener("click", () => {
+    playRound();
+})
+container.appendChild(Scissors)
+
+//functions part(functionality)
+
+function getComputerChoice(){//1.Function to get choice of computer
     function threeRandomValues(num){
         return Math.floor(Math.random()*num)
     };
@@ -32,8 +57,7 @@ function getHumanChoice(){
         return scissors
     }
 };
-
-function playRound(){
+function playRound(){//2.Game rules
     let humanChoice = getHumanChoice();
     let computerChoice = getComputerChoice();
     if (humanChoice == computerChoice){
@@ -54,10 +78,9 @@ function playRound(){
     }
 };
 
-function playGame(){
-    for (let i = 0; i<5; i++) {
+function playGame(){//3.Playing games
         playRound();
-        console .log(`You won ${humanScore} matches while computer won ${computerScore} matches!`)    }
+        console .log(`You won ${humanScore} matches while computer won ${computerScore} matches!`)
 };
 
 playGame();
